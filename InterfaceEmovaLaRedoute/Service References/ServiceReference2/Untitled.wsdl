@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:ns2="http://Redcats/File/ESB-TIBCO/File/1.0/InjectFile/1.0" xmlns:tns="http://Redcats/File/ESB-TIBCO/File/1.0" xmlns:ns4="http://Redcats/File/ESB-TIBCO/File/1.0/GetVersion/1.0" xmlns:ns0="http://Redcats/FileManagerInterface/ESB-TIBCO/File/1.0/InjectFileToOverride/1.0" xmlns:ns3="http://RedCats/Inject/ESB-TIBCO/KwaiFile/1.0/InjectFileFromKwai/1.0" xmlns:ns1="http://Redcats/File/ESB-TIBCO/File/1.0/Fault/1.0" name="Untitled" targetNamespace="http://Redcats/File/ESB-TIBCO/File/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema xmlns="http://Redcats/FileManagerInterface/ESB-TIBCO/File/1.0/InjectFileToOverride/1.0" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://Redcats/FileManagerInterface/ESB-TIBCO/File/1.0/InjectFileToOverride/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="InjectFileToOverrideRequest_Type">
+        <xs:sequence>
+          <xs:element name="EUserId" type="xs:string" />
+          <xs:element name="ESystem" type="xs:string" />
+          <xs:element name="FlowName" type="xs:string" />
+          <xs:element name="FlowVersion" type="xs:string" />
+          <xs:element name="FileName" type="xs:string" />
+          <xs:element minOccurs="0" name="FilePath" type="xs:string" />
+          <xs:element minOccurs="0" name="NumberOfElements" type="xs:int" />
+          <xs:element name="fileAttachedWithSoapMsg" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InjectFileToOverrideRequest_1.0" type="ns0:InjectFileToOverrideRequest_Type" />
+      <xs:element name="InjectFileToOverrideResponse_1.0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="respParameter" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns="http://Redcats/File/ESB-TIBCO/File/1.0/InjectFile/1.0" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://Redcats/File/ESB-TIBCO/File/1.0/InjectFile/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="ErrorType">
+        <xs:sequence>
+          <xs:element name="Code" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>0001 = Invalid EUserID, 0002 = Invalid ESystem, 0003 = Invalid FlowName, 0004 = Invalid Attachment, 0005 = Invalid number of elements, 9999 = Default Error Code</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Message" type="xs:string" />
+        </xs:sequence>
+        <xs:attribute name="Type" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="InjectFileRequest_Type">
+        <xs:sequence>
+          <xs:element name="EUserId" type="xs:string" />
+          <xs:element name="ESystem" type="xs:string" />
+          <xs:element name="FlowName" type="xs:string" />
+          <xs:element name="FlowVersion" type="xs:string" />
+          <xs:element name="FileName" type="xs:string" />
+          <xs:element minOccurs="0" name="FilePath" type="xs:string" />
+          <xs:element minOccurs="0" name="NumberOfElements" type="xs:int" />
+          <xs:element name="fileAttachedWithSoapMsg" type="xs:boolean" />
+          <xs:element minOccurs="0" name="FunctionalValidationInformation">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:any namespace="##any" processContents="skip" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="Overwrite" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="InjectFileResponse_Type">
+        <xs:sequence>
+          <xs:element name="processWithSuccess" type="xs:boolean" />
+          <xs:element minOccurs="0" name="BatchId" type="xs:string" />
+          <xs:element minOccurs="0" name="Error" type="ns2:ErrorType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InjectFileRequest_1.0" type="ns2:InjectFileRequest_Type" />
+      <xs:element name="InjectFileResponse_1.0" type="ns2:InjectFileResponse_Type" />
+    </xs:schema>
+    <xs:schema xmlns="http://Redcats/File/ESB-TIBCO/File/1.0/GetVersion/1.0" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://Redcats/File/ESB-TIBCO/File/1.0/GetVersion/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="GetVersionRequest_1.0" type="xs:anyType" />
+      <xs:element name="GetVersionResponse_1.0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="version" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns="http://Redcats/File/ESB-TIBCO/File/1.0/Fault/1.0" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://Redcats/File/ESB-TIBCO/File/1.0/Fault/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="Fault_1.0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="FaultId" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>The error message unique identifier</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="FaultMessage" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>The unique message identifier</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="FaultTrace" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>The error message</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="TrcTs" type="xs:dateTime" />
+            <xs:element minOccurs="0" name="msgID" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>The unique message identifier</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns="http://RedCats/Inject/ESB-TIBCO/KwaiFile/1.0/InjectFileFromKwai/1.0" xmlns:param="http://Redcats/File/ESB-TIBCO/File/1.0/InjectFile/1.0" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://RedCats/Inject/ESB-TIBCO/KwaiFile/1.0/InjectFileFromKwai/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://Redcats/File/ESB-TIBCO/File/1.0/InjectFile/1.0" />
+      <xs:element name="InjectFileFromKwaiRequest_1.0" type="param:InjectFileRequest_Type" />
+      <xs:element name="InjectFileFromKwaiResponse_1.0" type="param:InjectFileResponse_Type" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="InjectFileToOverrideRequest_1.0">
+    <wsdl:part name="parameters" element="ns0:InjectFileToOverrideRequest_1.0" />
+  </wsdl:message>
+  <wsdl:message name="InjectFileToOverrideResponse_1.0">
+    <wsdl:part name="parameters" element="ns0:InjectFileToOverrideResponse_1.0" />
+  </wsdl:message>
+  <wsdl:message name="Fault_1.0">
+    <wsdl:part name="parameters" element="ns1:Fault_1.0" />
+  </wsdl:message>
+  <wsdl:message name="InjectFileRequest_1.0">
+    <wsdl:part name="parameters" element="ns2:InjectFileRequest_1.0" />
+  </wsdl:message>
+  <wsdl:message name="InjectFileResponse_1.0">
+    <wsdl:part name="parameters" element="ns2:InjectFileResponse_1.0" />
+  </wsdl:message>
+  <wsdl:message name="InjectFileFromKwaiRequest_1.0">
+    <wsdl:part name="parameters" element="ns3:InjectFileFromKwaiRequest_1.0" />
+  </wsdl:message>
+  <wsdl:message name="InjectFileFromKwaiResponse_1.0">
+    <wsdl:part name="parameters" element="ns3:InjectFileFromKwaiResponse_1.0" />
+  </wsdl:message>
+  <wsdl:message name="GetVersionRequest_1.0">
+    <wsdl:part name="parameters" element="ns4:GetVersionRequest_1.0" />
+  </wsdl:message>
+  <wsdl:message name="GetVersionResponse_1.0">
+    <wsdl:part name="parameters" element="ns4:GetVersionResponse_1.0" />
+  </wsdl:message>
+  <wsdl:portType name="portType">
+    <wsdl:operation name="InjectFileToOverride_1.0Op">
+      <wsdl:input message="tns:InjectFileToOverrideRequest_1.0" />
+      <wsdl:output message="tns:InjectFileToOverrideResponse_1.0" />
+      <wsdl:fault name="fault1" message="tns:Fault_1.0" />
+    </wsdl:operation>
+    <wsdl:operation name="InjectFile_1.0Op">
+      <wsdl:input message="tns:InjectFileRequest_1.0" />
+      <wsdl:output message="tns:InjectFileResponse_1.0" />
+      <wsdl:fault name="fault1" message="tns:Fault_1.0" />
+    </wsdl:operation>
+    <wsdl:operation name="InjectFileFromKwai_1.0Op">
+      <wsdl:input message="tns:InjectFileFromKwaiRequest_1.0" />
+      <wsdl:output message="tns:InjectFileFromKwaiResponse_1.0" />
+      <wsdl:fault name="fault1" message="tns:Fault_1.0" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion_1.0Op">
+      <wsdl:input message="tns:GetVersionRequest_1.0" />
+      <wsdl:output message="tns:GetVersionResponse_1.0" />
+      <wsdl:fault name="fault1" message="tns:Fault_1.0" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="File_1.0Binding" type="tns:portType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InjectFileToOverride_1.0Op">
+      <soap:operation soapAction="InjectFileToOverride_1.0" style="document" soapActionRequired="true" />
+      <wsdl:input>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:output>
+      <wsdl:fault name="fault1">
+        <soap:fault use="literal" name="fault1" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="InjectFile_1.0Op">
+      <soap:operation soapAction="InjectFile_1.0" style="document" soapActionRequired="true" />
+      <wsdl:input>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:output>
+      <wsdl:fault name="fault1">
+        <soap:fault use="literal" name="fault1" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="InjectFileFromKwai_1.0Op">
+      <soap:operation soapAction="InjectFileFromKwai_1.0" style="document" soapActionRequired="true" />
+      <wsdl:input>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:output>
+      <wsdl:fault name="fault1">
+        <soap:fault use="literal" name="fault1" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion_1.0Op">
+      <soap:operation soapAction="GetVersion_1.0" style="document" soapActionRequired="true" />
+      <wsdl:input>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:output>
+      <wsdl:fault name="fault1">
+        <soap:fault use="literal" name="fault1" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="File_1.0.serviceagent">
+    <wsdl:port name="File_1.0" binding="tns:File_1.0Binding">
+      <soap:address location="https://marketplace.laredoute.com/Redcats/File/ESB-TIBCO/File/1.0" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
